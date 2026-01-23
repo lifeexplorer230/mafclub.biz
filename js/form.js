@@ -1,7 +1,3 @@
-// Telegram Bot Configuration
-const TG_BOT_TOKEN = '8393335656:AAGUfFWaEPeSsuyIFy07mV7Tt8GAmH9j76E';
-const TG_CHAT_ID = '100596580';
-
 // Initialize form
 document.addEventListener('DOMContentLoaded', function() {
     // Create modal HTML
@@ -147,27 +143,9 @@ async function handleFormSubmit(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка...';
 
-    // Send to Telegram with МАФИЯ marker
-    const consentInfo = [];
-    if (formData.photoConsent) consentInfo.push('✅ Согласие на фото/видео');
-    if (formData.marketingConsent) consentInfo.push('✅ Согласие на рассылку');
-
-    const message = `🎭 МАФИЯ - НОВАЯ РЕГИСТРАЦИЯ
-
-━━━━━━━━━━━━━━━━
-👤 ДАННЫЕ УЧАСТНИКА
-━━━━━━━━━━━━━━━━
-Имя: ${formData.name}
-Email: ${formData.email}
-Телефон: ${formData.phone}
-
-📋 ДОПОЛНИТЕЛЬНЫЕ СОГЛАСИЯ
-${consentInfo.length > 0 ? consentInfo.join('\n') : '❌ Нет дополнительных согласий'}
-
-⏰ ${formData.timestamp}`.trim();
-
+    // Send to backend
     try {
-        await sendToTelegram(message);
+        await sendToTelegram(formData);
         showSuccess();
 
         // Reset form
@@ -180,22 +158,19 @@ ${consentInfo.length > 0 ? consentInfo.join('\n') : '❌ Нет дополнит
     }
 }
 
-async function sendToTelegram(message) {
-    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+async function sendToTelegram(formData) {
+    const url = 'https://videos.moderator.top/telegram-submit.php';
 
     const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            chat_id: TG_CHAT_ID,
-            text: message
-        })
+        body: JSON.stringify(formData)
     });
 
     if (!response.ok) {
-        throw new Error('Telegram API error');
+        throw new Error('Server error');
     }
 
     return response.json();
