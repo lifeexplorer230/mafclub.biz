@@ -49,7 +49,7 @@ function createFormModal() {
                         <label class="checkbox-label">
                             <input type="checkbox" id="userPrivacy" name="privacy" required>
                             <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Я согласен на обработку моих персональных данных, с <a href="https://mafclub.biz/page89841146.html" target="_blank" rel="noreferrer noopener">Политикой обработки персональных данных</a> ознакомлен.</span>
+                            <span class="checkbox-text">Я согласен на обработку моих персональных данных, с <a href="privacy.html" target="_blank" rel="noreferrer noopener">Политикой обработки персональных данных</a> ознакомлен.</span>
                         </label>
                     </div>
 
@@ -57,7 +57,7 @@ function createFormModal() {
                         <label class="checkbox-label">
                             <input type="checkbox" id="userOffer" name="offer" required>
                             <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Я согласен с <a href="https://mafclub.biz/page89827556.html" target="_blank" rel="noreferrer noopener">Договором офертой</a>.</span>
+                            <span class="checkbox-text">Я согласен с <a href="offer.html" target="_blank" rel="noreferrer noopener">Договором офертой</a>.</span>
                         </label>
                     </div>
 
