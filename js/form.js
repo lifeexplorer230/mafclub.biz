@@ -174,7 +174,7 @@ ${consentInfo.length > 0 ? consentInfo.join('\n') : '❌ Нет дополнит
         form.reset();
     } catch (error) {
         console.error('Error sending to Telegram:', error);
-        alert('Произошла ошибка при отправке. Попробуйте ещё раз или свяжитесь с нами напрямую: +7 (996) 100-48-98');
+        alert('Произошла ошибка при отправке. Попробуйте ещё раз или свяжитесь с нами напрямую: +7 925 212 4626');
         submitBtn.disabled = false;
         submitBtn.textContent = 'Забронировать место';
     }
