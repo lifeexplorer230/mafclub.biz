@@ -40,7 +40,7 @@ python3 -m http.server 8000
 1. Создайте новый репозиторий на GitHub
 2. Загрузите файлы в репозиторий
 3. В настройках репозитория включите GitHub Pages для ветки `main`
-4. Сайт будет доступен по адресу: `https://yourusername.github.io/mafclub.biz`
+4. Сайт будет доступен по адресу: `https://lifeexplorer230.github.io/mafclub.biz`
 
 ## Контакты
 
