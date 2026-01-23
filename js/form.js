@@ -49,7 +49,7 @@ function createFormModal() {
                         <label class="checkbox-label">
                             <input type="checkbox" id="userPrivacy" name="privacy" required>
                             <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Я согласен на обработку моих персональных данных, с <a href="privacy.html" target="_blank" rel="noreferrer noopener">Политикой обработки персональных данных</a> ознакомлен.</span>
+                            <span class="checkbox-text">Я даю согласие на обработку персональных данных в соответствии с <a href="consent.html" target="_blank" rel="noreferrer noopener">Политикой обработки персональных данных</a></span>
                         </label>
                     </div>
 
@@ -58,6 +58,22 @@ function createFormModal() {
                             <input type="checkbox" id="userOffer" name="offer" required>
                             <span class="checkbox-custom"></span>
                             <span class="checkbox-text">Я согласен с <a href="offer.html" target="_blank" rel="noreferrer noopener">Договором офертой</a>.</span>
+                        </label>
+                    </div>
+
+                    <div class="form-field form-field--checkbox">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="userPhoto" name="photo">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Я даю согласие на фото- и видеосъемку во время мероприятий и использование материалов в социальных сетях организатора (необязательно)</span>
+                        </label>
+                    </div>
+
+                    <div class="form-field form-field--checkbox">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="userMarketing" name="marketing">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Я хочу получать информацию о предстоящих играх и специальных предложениях (необязательно)</span>
                         </label>
                     </div>
 
@@ -122,6 +138,8 @@ async function handleFormSubmit(e) {
         email: document.getElementById('userEmail').value,
         name: document.getElementById('userName').value,
         phone: document.getElementById('userPhone').value,
+        photoConsent: document.getElementById('userPhoto').checked,
+        marketingConsent: document.getElementById('userMarketing').checked,
         timestamp: new Date().toLocaleString('ru-RU')
     };
 
@@ -130,6 +148,10 @@ async function handleFormSubmit(e) {
     submitBtn.textContent = 'Отправка...';
 
     // Send to Telegram with МАФИЯ marker
+    const consentInfo = [];
+    if (formData.photoConsent) consentInfo.push('✅ Согласие на фото/видео');
+    if (formData.marketingConsent) consentInfo.push('✅ Согласие на рассылку');
+
     const message = `🎭 МАФИЯ - НОВАЯ РЕГИСТРАЦИЯ
 
 ━━━━━━━━━━━━━━━━
@@ -138,6 +160,9 @@ async function handleFormSubmit(e) {
 Имя: ${formData.name}
 Email: ${formData.email}
 Телефон: ${formData.phone}
+
+📋 ДОПОЛНИТЕЛЬНЫЕ СОГЛАСИЯ
+${consentInfo.length > 0 ? consentInfo.join('\n') : '❌ Нет дополнительных согласий'}
 
 ⏰ ${formData.timestamp}`.trim();
 
