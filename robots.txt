@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /consent.html
+
+Sitemap: https://mafclub.biz/sitemap.xml
