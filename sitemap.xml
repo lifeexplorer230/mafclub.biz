@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://mafclub.biz/</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mafclub.biz/img/maf20.jpeg</image:loc>
+      <image:caption>Игроки в мафию за игровым столом в напряженной атмосфере</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://mafclub.biz/offer.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://mafclub.biz/privacy.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
