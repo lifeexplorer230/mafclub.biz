@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мастерская автоматизации для селлеров</title>
+<meta name="description" content="Закрытый клуб для предпринимателей, которые автоматизируют бизнес с помощью AI. Каждую пятницу разбираем реальные задачи.">
+<link rel="stylesheet" href="css/tilda-grid-3.0.min.css">
+<link href="fonts/roboto.css" rel="stylesheet">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Roboto', Arial, sans-serif; color: #333; }
+
+  /* HERO */
+  .hero {
+    background-color: #0c112e;
+    color: #fff;
+    padding: 100px 20px 80px;
+    text-align: center;
+  }
+  .hero__label {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #13ce66;
+    margin-bottom: 20px;
+  }
+  .hero__title {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero__sub {
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+  .btn {
+    display: inline-block;
+    background-color: #13ce66;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 18px 48px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+
+  /* QUOTE */
+  .quote {
+    background: #f5f5f5;
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .quote__text {
+    font-size: 22px;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    color: #222;
+  }
+  .quote__text em {
+    font-style: normal;
+    color: #13ce66;
+    font-weight: 600;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 80px 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .section__title {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #111;
+  }
+
+  /* CARDS */
+  .cards {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 36px 28px;
+    flex: 1 1 260px;
+    max-width: 300px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .card__icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .card__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #111;
+  }
+  .card__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  /* FOR WHOM */
+  .forwho {
+    background: #0c112e;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .forwho__title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 40px;
+  }
+  .forwho__list {
+    list-style: none;
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .forwho__list li {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px 0;
+    padding-left: 32px;
+    position: relative;
+    color: rgba(255,255,255,0.88);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .forwho__list li:last-child { border-bottom: none; }
+  .forwho__list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #13ce66;
+    font-weight: 700;
+  }
+
+  /* CASES */
+  .cases { background: #fafafa; }
+  .case {
+    background: #fff;
+    border-radius: 10px;
+    padding: 28px 24px;
+    flex: 1 1 260px;
+    max-width: 300px;
+    border-left: 4px solid #13ce66;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .case__name {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #13ce66;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .case__title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+  }
+  .case__text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  /* PRICE */
+  .price-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #fff;
+  }
+  .price-box {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 48px 56px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    max-width: 420px;
+    width: 100%;
+  }
+  .price-box__label {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 12px;
+  }
+  .price-box__amount {
+    font-size: 56px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .price-box__period {
+    font-size: 18px;
+    color: #999;
+    margin-bottom: 24px;
+  }
+  .price-box__perks {
+    list-style: none;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .price-box__perks li {
+    font-size: 15px;
+    color: #444;
+    padding: 7px 0;
+    padding-left: 24px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .price-box__perks li:last-child { border-bottom: none; }
+  .price-box__perks li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #13ce66;
+    font-weight: 700;
+  }
+  .price-box__note {
+    font-size: 13px;
+    color: #bbb;
+    margin-top: 16px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #0c112e;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 14px;
+  }
+  .footer a { color: #13ce66; text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .hero__title { font-size: 34px; }
+    .hero__sub { font-size: 17px; }
+    .price-box { padding: 36px 24px; }
+    .price-box__amount { font-size: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero__label">Клуб Сильных Связей</div>
+  <h1 class="hero__title">Мастерская автоматизации для селлеров</h1>
+  <p class="hero__sub">Каждую пятницу разбираем реальные задачи бизнеса с помощью AI — на глазах, с нуля до результата.</p>
+  <a href="https://t.me/lifeexplorer23" target="_blank" class="btn">Записаться</a>
+</div>
+
+<!-- QUOTE -->
+<div class="quote">
+  <p class="quote__text">
+    Автоматизация — это путь к <em>системному бизнесу</em>.<br>
+    Когда строишь автоматизации, начинаешь мыслить системно.<br>
+    Это трансформирует бизнес изнутри.
+  </p>
+</div>
+
+<!-- ЧТО ВХОДИТ -->
+<div style="background:#fff; padding: 80px 20px;">
+<div class="section" style="padding: 0; margin: 0 auto;">
+  <h2 class="section__title">Что входит в мастерскую</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card__icon">📺</div>
+      <div class="card__title">Стрим каждую пятницу</div>
+      <div class="card__text">Реальный селлер решает реальную задачу автоматизации за 60 минут — на ваших глазах. Записи остаются навсегда.</div>
+    </div>
+    <div class="card">
+      <div class="card__icon">🔒</div>
+      <div class="card__title">Закрытая мастерская</div>
+      <div class="card__text">30 минут после стрима только для участников. Разбираем ваши задачи, задаём неудобные вопросы, ищем решения вместе.</div>
+    </div>
+    <div class="card">
+      <div class="card__icon">💬</div>
+      <div class="card__title">Чат и поддержка</div>
+      <div class="card__text">Telegram-чат, где люди честно рассказывают про свой путь — не только победы, но и где застряли. Вопрос можно задать между встречами.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ДЛЯ КОГО -->
+<div class="forwho">
+  <h2 class="forwho__title">Для кого мастерская</h2>
+  <ul class="forwho__list">
+    <li>Продаёте на маркетплейсах (Ozon, WB) и хотите автоматизировать рутину</li>
+    <li>Хотите разобраться с AI-инструментами: Claude Code, автоагенты, ботами</li>
+    <li>Готовы открыто рассказывать про свой путь — не только успехи</li>
+    <li>Ищете окружение из таких же предпринимателей, а не курс с домашними заданиями</li>
+  </ul>
+</div>
+
+<!-- КЕЙСЫ -->
+<div class="cases" style="padding: 80px 20px;">
+<div class="section" style="padding: 0; margin: 0 auto;">
+  <h2 class="section__title">Реальные кейсы участников</h2>
+  <div class="cards">
+    <div class="case">
+      <div class="case__name">Костя</div>
+      <div class="case__title">Дашборд юнит-экономики и рекламы для Озона</div>
+      <div class="case__text">Автоматизация сбора и анализа данных через Claude Code — 2 часа вместо ручного учёта каждый день.</div>
+    </div>
+    <div class="case">
+      <div class="case__name">Маринкин</div>
+      <div class="case__title">Карточки товаров через AI + Фотошоп</div>
+      <div class="case__text">Генерация и обработка карточек через Кодекс — в разы быстрее ручного создания.</div>
+    </div>
+    <div class="case">
+      <div class="case__name">Сергей</div>
+      <div class="case__title">Автопостинг видео по соцсетям</div>
+      <div class="case__text">Система, которая сама нарезает и публикует контент по расписанию без участия человека.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ЦЕНА -->
+<div class="price-section">
+  <h2 class="section__title">Стоимость</h2>
+  <div class="price-box">
+    <div class="price-box__label">Мастерская</div>
+    <div class="price-box__amount">5 000₽</div>
+    <div class="price-box__period">в месяц</div>
+    <ul class="price-box__perks">
+      <li>Стрим каждую пятницу</li>
+      <li>Закрытая часть только для участников</li>
+      <li>Telegram-чат с участниками</li>
+      <li>Поддержка между встречами</li>
+      <li>Доступ к архиву всех записей</li>
+    </ul>
+    <a href="https://t.me/lifeexplorer23" target="_blank" class="btn" style="width:100%; text-align:center;">Записаться</a>
+    <p class="price-box__note">Не более 20 участников</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Клуб Сильных Связей · <a href="https://t.me/lifeexplorer23">@lifeexplorer23</a> · <a href="/">mafclub.biz</a></p>
+</div>
+
+</body>
+</html>
