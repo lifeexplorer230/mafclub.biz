@@ -19,7 +19,17 @@
     if (!form || form.id !== FORM_ID) return; // чужие формы не трогаем
 
     var name = val(form, "Name"), phone = val(form, "Phone"), email = val(form, "Email");
-    if (!name || (!phone && !email)) { alert("Заполните имя и телефон."); e.preventDefault(); e.stopImmediatePropagation(); return; }
+    var digits = phone.replace(/\D/g, "");
+    var phoneOk = (digits.length === 11 && /^[78]/.test(digits)) || digits.length === 10;
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (name.length < 2 || !emailOk || !phoneOk) {
+      var m = [];
+      if (name.length < 2) m.push("укажите имя");
+      if (!emailOk) m.push("корректный e-mail (например ivan@mail.ru)");
+      if (!phoneOk) m.push("телефон в формате +7 999 123-45-67");
+      alert("Проверьте поля: " + m.join(", ") + ".");
+      e.preventDefault(); e.stopImmediatePropagation(); return;
+    }
 
     e.preventDefault(); e.stopImmediatePropagation(); e.stopPropagation();
     if (sending) return;
