@@ -25,7 +25,7 @@ function createFormModal() {
                     <p class="form-step__subtitle">Заполните форму и мы забронируем для вас место</p>
                 </div>
 
-                <form id="registrationForm" class="form-fields">
+                <form id="registrationForm" class="form-fields" novalidate>
                     <div class="form-field">
                         <label for="userEmail">E-mail *</label>
                         <input type="email" id="userEmail" name="email" required placeholder="Ваш E-mail">
@@ -124,11 +124,70 @@ function showSuccess() {
     try { if (window.ym) ym(105329948, 'reachGoal', 'form_submit'); } catch(e){}
 }
 
+// Показ/снятие ошибки под полем
+function fieldError(id, msg) {
+    var input = document.getElementById(id);
+    var field = input.closest('.form-field');
+    var box = field.querySelector('.field-error');
+    if (!box) {
+        box = document.createElement('div');
+        box.className = 'field-error';
+        box.style.cssText = 'color:#e53935;font-size:13px;margin-top:6px;line-height:1.3;';
+        field.appendChild(box);
+    }
+    if (msg) { box.textContent = msg; input.style.borderColor = '#e53935'; }
+    else { box.textContent = ''; input.style.borderColor = ''; }
+}
+
+function validateRegForm() {
+    var ok = true, firstBad = null;
+    var email = document.getElementById('userEmail').value.trim();
+    var name  = document.getElementById('userName').value.trim();
+    var phone = document.getElementById('userPhone').value.trim();
+
+    // e-mail: есть имя, @, домен с точкой
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        fieldError('userEmail', 'Введите корректный e-mail, например ivan@mail.ru');
+        ok = false; firstBad = firstBad || 'userEmail';
+    } else fieldError('userEmail', '');
+
+    // имя: минимум 2 буквы
+    if (name.length < 2) {
+        fieldError('userName', 'Укажите имя (хотя бы 2 буквы)');
+        ok = false; firstBad = firstBad || 'userName';
+    } else fieldError('userName', '');
+
+    // телефон: 11 цифр РФ (7/8 + 10) или 10 цифр
+    var digits = phone.replace(/\D/g, '');
+    var phoneOk = (digits.length === 11 && /^[78]/.test(digits)) || digits.length === 10;
+    if (!phoneOk) {
+        fieldError('userPhone', 'Введите телефон в формате +7 999 123-45-67');
+        ok = false; firstBad = firstBad || 'userPhone';
+    } else fieldError('userPhone', '');
+
+    // согласия
+    if (!document.getElementById('userPrivacy').checked) { alert('Нужно согласие на обработку персональных данных.'); ok = false; firstBad = firstBad || 'userPrivacy'; }
+    else if (!document.getElementById('userOffer').checked) { alert('Нужно согласие с договором офертой.'); ok = false; firstBad = firstBad || 'userOffer'; }
+
+    if (firstBad) { var el = document.getElementById(firstBad); if (el && el.focus) el.focus(); }
+    return ok;
+}
+
+// снимать ошибку по мере ввода
+document.addEventListener('input', function (e) {
+    if (e.target && e.target.closest && e.target.closest('#registrationForm') && e.target.id) {
+        fieldError(e.target.id, '');
+    }
+}, true);
+
 async function handleFormSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
+
+    // --- Проверка полей с понятными сообщениями ---
+    if (!validateRegForm()) return;
 
     // Collect data
     const formData = {
