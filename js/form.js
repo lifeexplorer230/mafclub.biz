@@ -121,6 +121,7 @@ function closeFormModal() {
 function showSuccess() {
     document.getElementById('formStep').classList.add('form-step--hidden');
     document.getElementById('formSuccess').classList.remove('form-step--hidden');
+    try { if (window.ym) ym(105329948, 'reachGoal', 'form_submit'); } catch(e){}
 }
 
 async function handleFormSubmit(e) {
@@ -159,7 +160,7 @@ async function handleFormSubmit(e) {
 }
 
 async function sendToTelegram(formData) {
-    const url = 'https://videos.moderator.top/telegram-submit.php';
+    const url = 'https://functions.yandexcloud.net/d4euhqpl00nd9om0aq0f';
 
     const response = await fetch(url, {
         method: 'POST',
