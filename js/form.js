@@ -2,7 +2,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Create modal HTML
     createFormModal();
+    // Оставляем ОДНУ форму: инлайн-секцию Tilda «Регистрация» превращаем в кнопку, открывающую попап
+    replaceInlineFormWithButton();
 });
+
+// Прячем инлайн-форму Tilda (#form1490306351) и ставим кнопку «Забронировать место»
+function replaceInlineFormWithButton() {
+    var tries = 0;
+    var iv = setInterval(function () {
+        var form = document.getElementById('form1490306351');
+        if (!form) { if (++tries > 40) clearInterval(iv); return; }
+        clearInterval(iv);
+        if (document.getElementById('regSectionBtn')) return;
+        form.style.display = 'none';
+        var btn = document.createElement('button');
+        btn.id = 'regSectionBtn';
+        btn.type = 'button';
+        btn.textContent = 'Забронировать место';
+        btn.style.cssText = 'display:block;margin:8px auto 0;padding:18px 48px;background:#ffc000;color:#000;font:600 18px/1 Roboto,Arial,sans-serif;border:none;border-radius:100px;cursor:pointer;letter-spacing:1px;';
+        btn.onmouseover = function(){ btn.style.opacity = '0.9'; };
+        btn.onmouseout = function(){ btn.style.opacity = '1'; };
+        btn.onclick = function () { if (window.openFormModal) openFormModal(); };
+        form.parentNode.insertBefore(btn, form.nextSibling);
+    }, 150);
+}
 
 // Open modal on CTA buttons
 function openFormModal() {
