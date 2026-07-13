@@ -72,29 +72,11 @@ function createFormModal() {
                         </label>
                     </div>
 
-                    <div class="form-field form-field--checkbox">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="userOffer" name="offer" required>
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Я согласен с <a href="offer.html" target="_blank" rel="noreferrer noopener">Договором офертой</a>.</span>
-                        </label>
-                    </div>
+                    
 
-                    <div class="form-field form-field--checkbox">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="userPhoto" name="photo">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Я даю согласие на фото- и видеосъемку во время мероприятий и использование материалов в социальных сетях организатора (необязательно)</span>
-                        </label>
-                    </div>
+                    
 
-                    <div class="form-field form-field--checkbox">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="userMarketing" name="marketing">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Я хочу получать информацию о предстоящих играх и специальных предложениях (необязательно)</span>
-                        </label>
-                    </div>
+                    
 
                     <button type="submit" class="form-btn form-btn--primary">
                         Забронировать место
@@ -113,7 +95,9 @@ function createFormModal() {
                     </div>
                     <h3 class="form-success__title">Место забронировано!</h3>
                     <p class="form-success__text">Спасибо за регистрацию. Мы свяжемся с вами в ближайшее время для подтверждения.</p>
-                    <button class="form-btn form-btn--primary" onclick="closeFormModal()">Отлично!</button>
+                    <p class="form-success__text" style="margin-top:4px;">А пока — подпишитесь на наш телеграм-канал: анонсы игр и жизнь клуба.</p>
+                    <a class="form-btn form-btn--primary" href="https://t.me/sellersmafia" target="_blank" rel="noreferrer noopener" style="display:block;text-decoration:none;text-align:center;background:#2AABEE;">Подписаться на канал</a>
+                    <button class="form-btn" onclick="closeFormModal()" style="margin-top:10px;background:transparent;border:none;color:#888;cursor:pointer;">Закрыть</button>
                 </div>
             </div>
         </div>
@@ -190,7 +174,6 @@ function validateRegForm() {
 
     // согласия
     if (!document.getElementById('userPrivacy').checked) { alert('Нужно согласие на обработку персональных данных.'); ok = false; firstBad = firstBad || 'userPrivacy'; }
-    else if (!document.getElementById('userOffer').checked) { alert('Нужно согласие с договором офертой.'); ok = false; firstBad = firstBad || 'userOffer'; }
 
     if (firstBad) { var el = document.getElementById(firstBad); if (el && el.focus) el.focus(); }
     return ok;
@@ -217,8 +200,6 @@ async function handleFormSubmit(e) {
         email: document.getElementById('userEmail').value,
         name: document.getElementById('userName').value,
         phone: document.getElementById('userPhone').value,
-        photoConsent: document.getElementById('userPhoto').checked,
-        marketingConsent: document.getElementById('userMarketing').checked,
         timestamp: new Date().toLocaleString('ru-RU')
     };
 
