@@ -96,7 +96,7 @@ function createFormModal() {
                     <h3 class="form-success__title">Место забронировано!</h3>
                     <p class="form-success__text">Спасибо за регистрацию. Мы свяжемся с вами в ближайшее время для подтверждения.</p>
                     <p class="form-success__text" style="margin-top:4px;">А пока — подпишитесь на наш телеграм-канал: анонсы игр и жизнь клуба.</p>
-                    <a class="form-btn form-btn--primary" href="https://t.me/sellersmafia" target="_blank" rel="noreferrer noopener" style="display:block;text-decoration:none;text-align:center;background:#2AABEE;">Подписаться на канал</a>
+                    <a class="form-btn form-btn--primary" href="https://t.me/sellersmafia/216" target="_blank" rel="noreferrer noopener" style="display:block;text-decoration:none;text-align:center;background:#2AABEE;">Подписаться на канал</a>
                     <button class="form-btn" onclick="closeFormModal()" style="margin-top:10px;background:transparent;border:none;color:#888;cursor:pointer;">Закрыть</button>
                 </div>
             </div>
