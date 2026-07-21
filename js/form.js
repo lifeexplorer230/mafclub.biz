@@ -200,6 +200,7 @@ async function handleFormSubmit(e) {
         email: document.getElementById('userEmail').value,
         name: document.getElementById('userName').value,
         phone: document.getElementById('userPhone').value,
+        oto: window.__mfcOtoActive ? 'спеццена 2 990 ₽ (сегодня)' : '',
         timestamp: new Date().toLocaleString('ru-RU')
     };
 

@@ -626,4 +626,43 @@ window./* DISABLED: tildastatcookie='no';setTimeout(function(){(function(d,w,k,o
  });}
 })();
 </script>
+<style id="mfc-oto-style">
+.mfc-oto-strike{text-decoration:line-through;opacity:.55;font-weight:400;}
+.mfc-oto-special{color:#ffc000;font-weight:700;white-space:nowrap;}
+.mfc-oto-note{font-size:14px;color:#ffc000;font-weight:600;}
+.mfc-oto-clock{font-variant-numeric:tabular-nums;}
+</style>
+<script id="mfc-oto-js">
+(function(){
+  var p=new URLSearchParams(location.search);
+  var viaAd=/promopages/i.test(p.get('utm_source')||'')||p.has('oto');
+  if(viaAd){try{localStorage.setItem('mfcOto','1');}catch(e){}}
+  var unlocked;try{unlocked=localStorage.getItem('mfcOto')==='1';}catch(e){unlocked=viaAd;}
+  if(!unlocked)return; // не по рекламе — обычная цена
+  function mskEndOfDay(){var now=Date.now();var m=new Date(now+10800000);return Date.UTC(m.getUTCFullYear(),m.getUTCMonth(),m.getUTCDate(),23,59,59,999)-10800000;}
+  var deadline=mskEndOfDay();
+  if(Date.now()>=deadline)return;
+  window.__mfcOtoActive=true;
+  function fmt(ms){var s=Math.max(0,Math.floor(ms/1000));var h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return (h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(x<10?'0':'')+x;}
+  function tick(){var left=deadline-Date.now();
+    if(left<=0){window.__mfcOtoActive=false;document.querySelectorAll('.mfc-oto-wrap').forEach(function(e){if(e.dataset.full)e.innerHTML=e.dataset.full;});return;}
+    document.querySelectorAll('.mfc-oto-clock').forEach(function(e){e.textContent=fmt(left);});
+    setTimeout(tick,250);}
+  document.addEventListener('DOMContentLoaded',function(){
+    // герой
+    var hero=document.querySelector("[field='tn_text_1470209944682'] span");
+    if(hero&&/4\s*900/.test(hero.textContent)){
+      hero.classList.add('mfc-oto-wrap');hero.dataset.full=hero.innerHTML;
+      hero.innerHTML='3-4 игры — <span class="mfc-oto-strike">4 900 ₽</span> <span class="mfc-oto-special">2 990 ₽</span><br><span class="mfc-oto-note">🔥 спеццена только сегодня · до полуночи <span class="mfc-oto-clock">--:--:--</span></span>';
+    }
+    // карточка цены
+    var card=document.querySelector("[field='li_descr__7924859856620']");
+    if(card&&/4\s*900/.test(card.textContent)){
+      card.classList.add('mfc-oto-wrap');card.dataset.full=card.innerHTML;
+      card.innerHTML=card.innerHTML.replace(/4\s*900\s*руб/,'<span class="mfc-oto-strike">4 900 руб</span> <span class="mfc-oto-special">2 990 руб</span><br><span class="mfc-oto-note" style="font-size:13px;">🔥 только сегодня · до полуночи <span class="mfc-oto-clock">--:--:--</span></span>');
+    }
+    tick();
+  });
+})();
+</script>
 </body> </html>
