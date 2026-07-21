@@ -653,13 +653,13 @@ window./* DISABLED: tildastatcookie='no';setTimeout(function(){(function(d,w,k,o
     var hero=document.querySelector("[field='tn_text_1470209944682'] span");
     if(hero&&/4\s*900/.test(hero.textContent)){
       hero.classList.add('mfc-oto-wrap');hero.dataset.full=hero.innerHTML;
-      hero.innerHTML='3-4 игры — <span class="mfc-oto-strike">4 900 ₽</span> <span class="mfc-oto-special">2 990 ₽</span><br><span class="mfc-oto-note">🔥 спеццена только сегодня · до полуночи <span class="mfc-oto-clock">--:--:--</span></span>';
+      hero.innerHTML='3-4 игры — <span class="mfc-oto-strike">4 900 ₽</span> <span class="mfc-oto-special">2 990 ₽</span><br><span class="mfc-oto-note">🔥 цена только для новых игроков · до полуночи <span class="mfc-oto-clock">--:--:--</span></span>';
     }
     // карточка цены
     var card=document.querySelector("[field='li_descr__7924859856620']");
     if(card&&/4\s*900/.test(card.textContent)){
       card.classList.add('mfc-oto-wrap');card.dataset.full=card.innerHTML;
-      card.innerHTML=card.innerHTML.replace(/4\s*900\s*руб/,'<span class="mfc-oto-strike">4 900 руб</span> <span class="mfc-oto-special">2 990 руб</span><br><span class="mfc-oto-note" style="font-size:13px;">🔥 только сегодня · до полуночи <span class="mfc-oto-clock">--:--:--</span></span>');
+      card.innerHTML=card.innerHTML.replace(/4\s*900\s*руб/,'<span class="mfc-oto-strike">4 900 руб</span> <span class="mfc-oto-special">2 990 руб</span><br><span class="mfc-oto-note" style="font-size:13px;">🔥 цена только для новых игроков · до полуночи <span class="mfc-oto-clock">--:--:--</span></span>');
     }
     tick();
   });
