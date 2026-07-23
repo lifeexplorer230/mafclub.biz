@@ -64,6 +64,11 @@ function createFormModal() {
                         <input type="tel" id="userPhone" name="phone" required placeholder="+7 (___) ___-__-__">
                     </div>
 
+                    <div class="form-field">
+                        <label for="userGameDate">На какую игру записываетесь? *</label>
+                        <select id="userGameDate" name="game_date" required style="width:100%;padding:14px;border:1px solid #ddd;border-radius:8px;font:400 16px Roboto,Arial,sans-serif;background:#fff;color:#17172b;box-sizing:border-box;"></select>
+                    </div>
+
                     <div class="form-field form-field--checkbox">
                         <label class="checkbox-label">
                             <input type="checkbox" id="userPrivacy" name="privacy" required>
@@ -112,6 +117,17 @@ function createFormModal() {
 
     // Form submission
     document.getElementById('registrationForm').addEventListener('submit', handleFormSubmit);
+
+    // Заполнить список игр из единого источника (js/dates.js)
+    (function fillGames() {
+        var sel = document.getElementById('userGameDate');
+        if (!sel) return;
+        var games = window.mafcUpcoming ? window.mafcUpcoming() : (window.MAFCLUB_GAMES || []);
+        if (!games.length) { sel.innerHTML = '<option value="">Уточним дату при звонке</option>'; return; }
+        sel.innerHTML = games.map(function (g, i) {
+            return '<option value="' + g.label + '"' + (i === 0 ? ' selected' : '') + '>' + g.label + '</option>';
+        }).join('');
+    })();
 
     // ESC key to close
     document.addEventListener('keydown', function(e) {
@@ -196,10 +212,12 @@ async function handleFormSubmit(e) {
     if (!validateRegForm()) return;
 
     // Collect data
+    const gameSel = document.getElementById('userGameDate');
     const formData = {
         email: document.getElementById('userEmail').value,
         name: document.getElementById('userName').value,
         phone: document.getElementById('userPhone').value,
+        game_date: gameSel ? gameSel.value : '',
         oto: window.__mfcOtoActive ? 'спеццена 2 990 ₽ (сегодня)' : '',
         timestamp: new Date().toLocaleString('ru-RU')
     };
