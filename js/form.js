@@ -45,7 +45,7 @@ function createFormModal() {
             <div class="form-step" id="formStep">
                 <div class="form-step__header">
                     <h3 class="form-step__title">Регистрация на игру</h3>
-                    <p class="form-step__subtitle">Заполните форму и мы забронируем для вас место</p>
+                    <p class="form-step__subtitle">Оставьте контакты — свяжемся в Telegram и подтвердим бронь. Оплата после подтверждения, без предоплаты.</p>
                 </div>
 
                 <form id="registrationForm" class="form-fields" novalidate>
