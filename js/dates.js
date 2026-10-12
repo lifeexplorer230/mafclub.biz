@@ -7,7 +7,7 @@ window.MAFCLUB_GAMES = [
   { date: "2026-09-12", label: "12 сентября (Сб)" },
   { date: "2026-09-26", label: "26 сентября (Сб)" },
   { date: "2026-10-10", label: "10 октября (Сб)" },
-  { date: "2026-10-24", label: "24 октября (Сб)" }
+  { date: "2026-11-14", label: "14 ноября (Сб)" }
 ];
 window.MAFCLUB_TIME = "12:00–18:30";
 window.MAFCLUB_METRO = "м. Улица 1905 года";
